@@ -21,11 +21,22 @@ let testFloat (str:string) =
 printf"Введите количество чисел: "
 let n = (testInt (Console.ReadLine()))
 
+printfn"Выберите способ заполнения \n1) С клавиатуры \n2) Путем заполнения случайными числами "
+let selectmethod = Console.ReadLine()
+
+let rnd = Random()
 let listf = [
     for i in 1..n do
-        printf"Введите число: "
-        yield (testFloat (Console.ReadLine()))
-    ]
+        if(selectmethod[0] = '1')then
+            printfn"Введите число: "
+            yield (testFloat (Console.ReadLine()))
+        else if(selectmethod[0] = '2')then
+            yield (float(rnd.Next(10,1000)))/10.0
+        else
+            printf"Значение вне списка. Программа завершена"
+            Environment.Exit(0)
+            ]
+printfn "Текущий список: %A" listf
 
 
 let takeFirst x = int(((x.ToString())[0]).ToString())
