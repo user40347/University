@@ -12,7 +12,7 @@ let testInt (str:string) =
         match str[i] with
         | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' -> ()
         | _ ->
-            printf"Это не число. Программа завершена."
+            printf"Это не целое число. Программа завершена."
             Environment.Exit(0)
     int(str)
         
