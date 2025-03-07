@@ -41,7 +41,7 @@ let listf = [
 printfn "Текущий список: %A" listf
 
 
-let takeFirst x = int(((x.ToString())[0]).ToString())
+let takeFirst x = if (x.ToString())[0] = '-' then int(((x.ToString())[1]).ToString()) else int(((x.ToString())[0]).ToString())
 
 let resultList = List.map takeFirst listf;
 
