@@ -43,12 +43,12 @@ let listf = [
 printfn "Текущий список: %A" listf
 
 
-let rec takeFirst x =
-    let x = abs x
-    if x < 10.0 then 
-      float(int(x))  
+let rec takeFirst (x:float) =
+    let x = abs (int(x))
+    if x < 10 then 
+        x 
     else 
-        takeFirst (x / 10.0)
+        takeFirst (float(x / 10))
 
 let resultList = List.map takeFirst listf;
 
