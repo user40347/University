@@ -44,7 +44,7 @@ printfn "Текущий список: %A" listf
 
 
 let rec takeFirst x =
-    let x = if x<0.0 then (x)*(-1.0) else x
+    let x = abs x
     if x < 10.0 then 
       float(int(x))  
     else 
