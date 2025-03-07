@@ -22,7 +22,9 @@ let testFloat (str:string) =
         
 printf"Введите количество чисел: "
 let n = (testInt (Console.ReadLine()))
-
+if n<0 then
+    printf"Значение вне списка. Программа завершена"
+    Environment.Exit(0)
 printfn"Выберите способ заполнения \n1) С клавиатуры \n2) Путем заполнения случайными числами "
 let selectmethod = Console.ReadLine()
 
@@ -41,7 +43,12 @@ let listf = [
 printfn "Текущий список: %A" listf
 
 
-let takeFirst x = if (x.ToString())[0] = '-' then int(((x.ToString())[1]).ToString()) else int(((x.ToString())[0]).ToString())
+let rec takeFirst x =
+    let x = if x<0.0 then (x)*(-1.0) else x
+    if x < 10.0 then 
+      float(int(x))  
+    else 
+        takeFirst (x / 10.0)
 
 let resultList = List.map takeFirst listf;
 
