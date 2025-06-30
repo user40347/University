@@ -1,24 +1,24 @@
-﻿open System
-printf"Введите число: "
-let s = Console.ReadLine()
+open System
 
 
-let testInt (str:string) = [
-    for i in 0..str.Length-1 do
-        match str[i] with
-        | '+' | '-' when i = 0 -> ()
-        | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' -> yield int((s[i]).ToString())
+let rec sumDigits n =
+    if n = 0 then 0
+    else (n % 10) + sumDigits (n / 10)  
+
+let rec readNatural prompt =
+    printf "%s" prompt
+    match Console.ReadLine() with
+    | null | "" ->
+        printfn "Ошибка: введите натуральное число."
+        readNatural prompt
+    | s ->
+        match System.Int32.TryParse(s) with
+        | (true, v) when v > 0 -> v   
         | _ ->
-            printf"Это не натуральное число. Программа завершена"
-            Environment.Exit(0)
-        ]
-        
- 
-let sumList list =
-    let rec loop acc = function
-        | [] -> acc
-        | head :: tail -> loop (acc + head) tail
-    loop 0 list
+            printfn "Ошибка: введите натуральное число больше нуля."
+            readNatural prompt
 
-printf "Послед %A" (sumList (testInt s))
-
+// Основная логика
+let number = readNatural "Введите натуральное число: "
+let result = sumDigits number
+printfn "Сумма цифр числа %d = %d" number result
